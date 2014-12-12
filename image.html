@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片</title>
+</head>
+<body>
+	<button type="button" id="prev-img">上一张</button>
+	<button type="button" id="next-img">下一张</button>
+
+	<ul id="img-list">
+		<li>
+			<a href="image.html" target="screen">
+				<img src="img/image_1.jpg" width="200" height="283">1
+			</a>
+		</li>
+        <li><img src="img/image_2.jpg" width="200" height="300">2</li>
+        <li><img src="img/image_3.jpg" width="200" height="252">3</li>
+        <li><img src="img/image_4.jpg" width="200" height="158">4</li>
+        <li><img src="img/image_5.jpg" width="200" height="300">5</li>
+	</ul>
+	
+<script>
+	var img_list        = document.getElementById('img-list'),
+		img_list_li     = img_list.getElementsByTagName('li'),
+		img_list_li_len = img_list_li.length,
+		prev_btn        = document.getElementById('prev-img'),
+		next_btn        = document.getElementById('next-img');
+
+	for(var i=0; i < img_list_li_len; i++) {
+		if (i !== 0) {
+			img_list_li[i].style.display = 'none';
+		} else {
+			img_list_li[i].style.display = 'block';
+		}
+	}
+
+	function getShownImg() {
+		for (var i=0; i < img_list_li_len; i++) {
+			if (img_list_li[i].style.display === 'block') {
+				return i;
+			}
+		}
+	}
+
+	// 0: 前一张， 1：下一张
+	function changeImg(direct) {
+		var shownImgIndex    = getShownImg(),
+			num              = direct === 0 ? -1 : 1,
+			needShowImgIndex = shownImgIndex + num;
+
+		if (needShowImgIndex === img_list_li_len) {
+			needShowImgIndex = 0;
+		}
+
+		if (needShowImgIndex === -1) {
+			needShowImgIndex = img_list_li_len - 1;
+		}
+
+		img_list_li[shownImgIndex].style.display = 'none';
+		img_list_li[needShowImgIndex].style.display = 'block';
+	}
+
+	prev_btn.addEventListener('click', function(){
+		changeImg(0)
+	});
+
+	next_btn.addEventListener('click', function(){
+		changeImg(1)
+	});
+</script>
+</body>
+</html>
