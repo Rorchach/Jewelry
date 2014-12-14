@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit"> 
+
 	<title>作品</title>
+	<link rel="stylesheet" href="css/util.css">
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -10,21 +13,42 @@
 	<section id="work-container">
 		<ul id="work-list">
 			<li class="gray-box">
-				<a href="image.html" target="screen">
+				<a href="images.html" target="screen" data-toggle="screen">
 					<img src="img/image_1.jpg" width="200" height="283">
 				</a>
-				<p>作品1</p>
+				<p>图片集作品</p>
 			</li>
-	        <li class="gray-box"><img src="img/image_2.jpg" width="200" height="300"><p>作品2</p></li>
-	        <li class="gray-box"><img src="img/image_3.jpg" width="200" height="252"><p>作品3</p></li>
-	        <li class="gray-box"><img src="img/image_4.jpg" width="200" height="158"><p>作品4</p></li>
+	        <li class="gray-box">
+				<a href="single-image.html" target="screen" data-toggle="screen">
+		        	<img src="img/image_2.jpg" width="200" height="300">
+	        	</a>
+	        	<p>单张图片展示</p>
+	        </li>
+	        <li class="gray-box">
+	        	<a href="swf.html" target="screen" data-toggle="screen">
+	        		<img src="img/image_3.jpg" width="200" height="252">
+	        	</a>
+	        	<p>flash动画</p>
+	        </li>
+	        <li class="gray-box">
+				<a href="http://182.92.8.100:8888/" target="blank">
+		        	<img src="img/image_4.jpg" width="200" height="158">
+	        	</a>
+	        	<p>2048游戏</p>
+	        </li>
 	        <li class="gray-box"><img src="img/image_5.jpg" width="200" height="300"><p>作品5</p></li>
 		</ul>
 	</section>
+	
+	<section id="screen-container">
+		<div id="screen-toolbar">
+			<a id="close-screen">关闭</a>
+		</div>
+		<iframe id="screen" name="screen">
+			
+		</iframe>
+	</section>
 
-	<iframe class="hide" id="screen" name="screen">
-		
-	</iframe>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.wookmark.js"></script>
 <script src="js/screenfull.js"></script>
@@ -45,21 +69,31 @@
 		});
 
 		// 点击全屏
-		var imgs          = document.getElementsByTagName('img'),
-			iframe_screen = document.getElementById('screen');
+		if (!screenfull.enabled) { // 暂时关闭全屏
+			var imgs          = document.getElementsByTagName('img'),
+				iframe_screen = document.getElementById('screen');
 
-		for (var i=0; i < imgs.length; i++) {
-			imgs[i].addEventListener('click', function(){
-				screenfull.request(iframe_screen);
+			for (var i=0; i < imgs.length; i++) {
+				imgs[i].addEventListener('click', function(){
+					screenfull.request(iframe_screen);
+				});
+			}
+			
+			document.addEventListener(screenfull.raw.fullscreenchange, function(){
+				if (!screenfull.isFullscreen) {
+					iframe_screen.style.display = 'none';
+				} else {
+					iframe_screen.style.display = 'block';
+				}
 			});
 		}
 
-		document.addEventListener(screenfull.raw.fullscreenchange, function(){
-			if (!screenfull.isFullscreen) {
-				iframe_screen.style.display = 'none';
-			} else {
-				iframe_screen.style.display = 'block';
-			}
+		$('#close-screen').click(function(){
+			$('#screen-container').fadeOut().find('iframe').attr('src', '');
+		});
+
+		$('a[data-toggle="screen"]').click(function(){
+			$('#screen-container').fadeIn();
 		});
 	});	
 </script>
