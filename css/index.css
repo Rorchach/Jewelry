@@ -14,6 +14,40 @@ body {
   background: #f1f1f1 url(../img/bg_apps.png) repeat-x;
 }
 
+#cover-container {
+    height: 300px;
+}
+
+@-webkit-keyframes 'name-in'
+{
+0% {opacity: 0; -webkit-transform:translate(0px, -50px);}
+100% {opacity: 1; -webkit-transform:translate(0px,0px);}  
+}
+
+#cover-photo {
+    display: block;
+    margin: 0 auto 0;
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #fff;
+    border-color: #fff;
+    opacity: 0;
+    -webkit-animation: name-in 0.7s ease-out 0.2s 1 forwards;
+    -moz-animation: name-in 0.7s ease-out 0.2s 1 forwards;
+}
+
+#cover-text {
+    font-size: 24px;
+    color: #999;
+    margin-top: 20px;
+    text-align: center;
+    opacity: 0;
+    -webkit-animation: name-in 0.7s ease-out 1.3s forwards;
+    -moz-animation: name-in 0.7s ease-out 1.3s forwards;
+}
+
 #work-container {
     margin: 0 auto;
 }
