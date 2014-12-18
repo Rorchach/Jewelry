@@ -3,21 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>图片</title>
+	
+	<link rel="stylesheet" href="css/typo.css">
+	<link rel="stylesheet" href="css/util.css">
+	<link rel="stylesheet" href="css/img.css">
 </head>
 <body>
-	<button type="button" id="prev-img">上一张</button>
-	<button type="button" id="next-img">下一张</button>
+	<button type="button" id="prev-img" class="hide">上一张</button>
+	<span id="next-img">下一张</span>
 
 	<ul id="img-list">
-		<li>
-			<a href="image.html" target="screen">
-				<img src="img/image_1.jpg" width="200" height="283">1
-			</a>
+		<li img-src="img/image_1.jpg">
 		</li>
-        <li><img src="img/image_2.jpg" width="200" height="300">2</li>
-        <li><img src="img/image_3.jpg" width="200" height="252">3</li>
-        <li><img src="img/image_4.jpg" width="200" height="158">4</li>
-        <li><img src="img/image_5.jpg" width="200" height="300">5</li>
+        <li img-src="img/image_2.jpg"></li>
+        <li img-src="img/image_3.jpg"></li>
+        <li img-src="img/image_4.jpg"></li>
+        <li img-src="img/image_5.jpg"></li>
+        <li img-src="img/big-image.jpg"></li>
 	</ul>
 	
 <script>
@@ -35,7 +37,7 @@
 		}
 	}
 
-	function getShownImg() {
+	function getShownImgItem() {
 		for (var i=0; i < img_list_li_len; i++) {
 			if (img_list_li[i].style.display === 'block') {
 				return i;
@@ -43,23 +45,33 @@
 		}
 	}
 
+	function showImg(show_img_index) {
+		var show_img_item = img_list_li[show_img_index],
+			img      = show_img_item.getAttribute('img-src');
+
+		show_img_item.style.display = 'block';
+		show_img_item.style.backgroundImage = 'url(' + img + ')';
+	}
+
 	// 0: 前一张， 1：下一张
 	function changeImg(direct) {
-		var shownImgIndex    = getShownImg(),
-			num              = direct === 0 ? -1 : 1,
-			needShowImgIndex = shownImgIndex + num;
+		var shown_img_index     = getShownImgItem(),
+			num                 = direct === 0 ? -1 : 1,
+			show_img_index = shown_img_index + num;
 
-		if (needShowImgIndex === img_list_li_len) {
-			needShowImgIndex = 0;
+		if (show_img_index === img_list_li_len) {
+			show_img_index = 0;
 		}
 
-		if (needShowImgIndex === -1) {
-			needShowImgIndex = img_list_li_len - 1;
+		if (show_img_index === -1) {
+			show_img_index = img_list_li_len - 1;
 		}
 
-		img_list_li[shownImgIndex].style.display = 'none';
-		img_list_li[needShowImgIndex].style.display = 'block';
+		img_list_li[shown_img_index].style.display = 'none';
+		showImg(show_img_index);
 	}
+
+	showImg(0);
 
 	prev_btn.addEventListener('click', function(){
 		changeImg(0)
