@@ -1,3 +1,13 @@
 .hide {
     display: none;
 }
+
+.bg-img-center {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.rotate-n-30 {
+	transform: rotate(-30deg);
+	-webkie-transform: rotate(-30deg);
+}
