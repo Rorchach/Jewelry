@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	
 	<title>swf</title>
+
+	<link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/util.css">
+	<style>
+		body, html {
+			width: 100%;
+			height: 100%;
+		}
+		
+		body {
+			position: relative;
+		}
+
+		#loading {
+			position: absolute;
+			font-size: 40px;
+			left: 49%;
+			top: 49%;
+		}
+
+		#flash {
+			margin: 0 auto 0;
+			margin-top: 300px;
+		}
+	</style>
 </head>
 <body>
-	<embed src="media/demo.swf">
+	
+	<span class="fa fa-spinner fa-spin" id="loading"></span>
+	<embed class="hide" id="flash" src="media/demo.swf">
+
+	<script>
+		setTimeout(function(){
+			var flash = document.getElementById('flash'),
+				loading = document.getElementById('loading');
+
+			flash.style.display = 'block';
+			loading.style.display = 'none'
+		}, 1500);
+	</script>
 </body>
 </html>
