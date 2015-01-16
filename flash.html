@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	
+	<title>图片</title>
+	
+	<link rel="stylesheet" href="css/typo.css">
+	<link rel="stylesheet" href="css/util.css">
+	<link rel="stylesheet" href="lib/animate/animate.css">
+	<link rel="stylesheet" href="css/img.css">
+	<style>
+		embed {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<button id="prev-img" class="hide" type="button" >上一张</button>
+	<span class="no-select" id="next-img">下一张</span>
+
+	<ul id="img-list">
+		<li >
+			<div class="image-container">
+				<div>
+					<embed src="likx/flash/1.swf">
+				</div>
+			</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事0</h3><a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？这是怎样的一个故事？</p>
+			</div>
+		</li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/2.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/3.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/4.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/5.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/6.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/7.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+        <li>
+			<div class="image-container">
+				<div>
+		        	<embed src="likx/flash/8.swf">
+	        	</div>
+        	</div>
+			<div class="img-text-container">
+				<h3 class="img-header">大熊与小女孩的故事1</h3>
+				<a class="img-source">源文件</a>
+				<p class="img-content">这是怎样的一个故事？</p>
+			</div>
+        </li>
+	</ul>
+
+<script>
+	var img_list        = document.getElementById('img-list'),
+		img_list_li     = img_list.getElementsByTagName('li'),
+		img_list_li_len = img_list_li.length,
+		prev_btn        = document.getElementById('prev-img'),
+		next_btn        = document.getElementById('next-img');
+
+	for(var i=0; i < img_list_li_len; i++) {
+		if (i !== 0) {
+			img_list_li[i].style.display = 'none';
+		} else {
+			img_list_li[i].style.display = 'block';
+		}
+	}
+
+	function getShownImgItem() {
+		for (var i=0; i < img_list_li_len; i++) {
+			if (img_list_li[i].style.display === 'block') {
+				return i;
+			}
+		}
+	}
+
+	function showImg(show_img_index) {
+		var show_img_item = img_list_li[show_img_index],
+			img      = show_img_item.getAttribute('img-src');
+
+		show_img_item.style.display = 'block';
+		show_img_item.style.backgroundImage = 'url(' + img + ')';
+	}
+
+	// 0: 前一张， 1：下一张
+	function changeImg(direct) {
+		var shown_img_index     = getShownImgItem(),
+			num                 = direct === 0 ? -1 : 1,
+			show_img_index = shown_img_index + num;
+
+		if (show_img_index === img_list_li_len) {
+			show_img_index = 0;
+		}
+
+		if (show_img_index === -1) {
+			show_img_index = img_list_li_len - 1;
+		}
+
+		img_list_li[shown_img_index].style.display = 'none';
+		showImg(show_img_index);
+	}
+
+	showImg(0);
+
+	prev_btn.addEventListener('click', function(){
+		changeImg(0)
+	});
+
+	next_btn.addEventListener('click', function(){
+		changeImg(1)
+	});
+</script>
+</body>
+</html>

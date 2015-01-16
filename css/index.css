@@ -143,4 +143,23 @@ body {
     color: #fff;
     cursor: pointer;
 }
-
+.flash-a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border: none!important;
+}
+.gray-box {
+    -webkit-animation: top 0.5s forwards;
+}
+@-webkit-keyframes 'top' {
+    from {
+        -webkit-transform: scale(0, 0);
+        transform: scale(0, 0);
+    }
+    to {
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+}

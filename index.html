@@ -20,30 +20,29 @@
 	<section id="work-container">
 		<ul id="work-list">
 			<li class="gray-box">
-				<a href="images.html" target="screen" data-toggle="screen">
-					<img src="img/image_1.jpg" width="200" height="283">
+				<a href="3ds.html" target="screen" data-toggle="screen">
+					<img src="likx/3ds/1.jpg" width="200" height="230">
 				</a>
-				<p>图片集作品</p>
+				<p>3ds max</p>
 			</li>
 	        <li class="gray-box">
-				<a href="single-image.html" target="screen" data-toggle="screen">
-		        	<img src="img/image_2.jpg" width="200" height="300">
+				<a href="ps.html" target="screen" data-toggle="screen">
+		        	<img src="likx/ps/1.jpg" width="200" height="170">
 	        	</a>
-	        	<p>单张图片展示</p>
+	        	<p>PS</p>
 	        </li>
 	        <li class="gray-box">
-	        	<a href="swf.html" target="screen" data-toggle="screen">
-	        		<img src="img/image_3.jpg" width="200" height="252">
+	        	<a href="ai.html" target="screen" data-toggle="screen">
+	        		<img src="likx/Ai/1.jpg" width="200" height="252">
 	        	</a>
-	        	<p>flash动画</p>
+	        	<p>AI</p>
 	        </li>
 	        <li class="gray-box">
-				<a href="http://182.92.8.100:8888/" target="blank">
-		        	<img src="img/image_4.jpg" width="200" height="158">
+				<a href="flash.html" target="screen" data-toggle="screen">
+	        		<img src="likx/flash/1.png" width="200" height="100">
 	        	</a>
-	        	<p>2048游戏</p>
+	        	<p>Flash</p>
 	        </li>
-	        <li class="gray-box"><img src="img/image_5.jpg" width="200" height="300"><p>作品5</p></li>
 		</ul>
 	</section>
 	
@@ -61,48 +60,47 @@
 <script src="js/screenfull.js"></script>
 <script src="js/index.js"></script>
 <script>
-	$(function(){
+$(function(){
+	// 瀑布流
+	var handler = $('#work-list li');
 
-		// 瀑布流
-		var handler = $('#work-list li');
+	handler.wookmark({
+		// Prepare layout options.
+		autoResize: true, // This will auto-update the layout when the browser window is resized.
+		container: $('#work-container'), // Optional, used for some extra CSS styling
+		offset: 5, // Optional, the distance between grid items
+		outerOffset: 10, // Optional, the distance to the containers border
+		itemWidth: 210 // Optional, the width of a grid item
+	});
 
-		handler.wookmark({
-			// Prepare layout options.
-			autoResize: true, // This will auto-update the layout when the browser window is resized.
-			container: $('#work-container'), // Optional, used for some extra CSS styling
-			offset: 5, // Optional, the distance between grid items
-			outerOffset: 10, // Optional, the distance to the containers border
-			itemWidth: 210 // Optional, the width of a grid item
-		});
+	// 点击全屏
+	if (!screenfull.enabled) { // 暂时关闭全屏
+		var imgs          = document.getElementsByTagName('img'),
+			iframe_screen = document.getElementById('screen');
 
-		// 点击全屏
-		if (!screenfull.enabled) { // 暂时关闭全屏
-			var imgs          = document.getElementsByTagName('img'),
-				iframe_screen = document.getElementById('screen');
-
-			for (var i=0; i < imgs.length; i++) {
-				imgs[i].addEventListener('click', function(){
-					screenfull.request(iframe_screen);
-				});
-			}
-			
-			document.addEventListener(screenfull.raw.fullscreenchange, function(){
-				if (!screenfull.isFullscreen) {
-					iframe_screen.style.display = 'none';
-				} else {
-					iframe_screen.style.display = 'block';
-				}
+		for (var i=0; i < imgs.length; i++) {
+			imgs[i].addEventListener('click', function(){
+				screenfull.request(iframe_screen);
 			});
 		}
-
-		$('#close-screen').click(function(){
-			$('#screen-container').fadeOut().find('iframe').attr('src', '');
+		
+		document.addEventListener(screenfull.raw.fullscreenchange, function(){
+			if (!screenfull.isFullscreen) {
+				iframe_screen.style.display = 'none';
+			} else {
+				iframe_screen.style.display = 'block';
+			}
 		});
+	}
 
-		$('a[data-toggle="screen"]').click(function(){
-			$('#screen-container').fadeIn();
-		});
-	});	
+	$('#close-screen').click(function(){
+		$('#screen-container').fadeOut().find('iframe').attr('src', '');
+	});
+
+	$('a[data-toggle="screen"]').click(function(){
+		$('#screen-container').fadeIn();
+	});
+});	
 </script>
 </body>
 </html>
