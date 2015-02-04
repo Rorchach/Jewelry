@@ -10,40 +10,57 @@
 	<link rel="stylesheet" href="css/util.css">
 	<link rel="stylesheet" href="css/index.css">
 </head>
-<body class="typo">
-
+<body>
 	<div id="cover-container">
 		<img class="gray-box" id="cover-photo" src="img/photo.jpeg" alt="头像">
 		<p id="cover-text">胡阳</p>
 	</div>
 	
-	<section id="work-container">
-		<ul id="work-list">
-			<li class="gray-box">
-				<a href="3ds.html" target="screen" data-toggle="screen">
-					<img class="lazy" data-original="likx/3ds/1.jpg" width="200" height="230">
-				</a>
-				<p>3ds max</p>
-			</li>
-	        <li class="gray-box">
-				<a href="ps.html" target="screen" data-toggle="screen">
-		        	<img class="lazy" data-original="likx/ps/1.jpg" width="200" height="170">
-	        	</a>
-	        	<p>PS</p>
-	        </li>
-	        <li class="gray-box">
-	        	<a href="ai.html" target="screen" data-toggle="screen">
-	        		<img class="lazy" data-original="likx/Ai/1.jpg" width="200" height="252">
-	        	</a>
-	        	<p>AI</p>
-	        </li>
-	        <li class="gray-box">
-				<a href="flash.html" target="screen" data-toggle="screen">
-	        		<img class="lazy" data-original="likx/flash/1.png" width="200" height="100">
-	        	</a>
-	        	<p>Flash</p>
-	        </li>
-		</ul>
+	<section id="container">
+		<div id="main">
+			<ul id="list">
+		        <li class="group">
+					<div class="box">
+						<div class="shot">
+						<a href="3ds.html" target="screen" data-toggle="screen">
+							<img class="lazy" data-original="likx/3ds/1.jpg" width="220" height="150">
+						</a>
+						</div>
+						<p>3ds max</p>
+					</div>
+		        </li>
+		        <li class="group">
+					<div class="box">
+						<div class="shot">
+						<a href="3ds.html" target="screen" data-toggle="screen">
+							<img class="lazy" data-original="likx/3ds/1.jpg" width="220" height="150">
+						</a>
+						</div>
+						<p>3ds max</p>
+					</div>
+		        </li>
+		        <li class="group">
+					<div class="box">
+						<div class="shot">
+						<a href="3ds.html" target="screen" data-toggle="screen">
+							<img class="lazy" data-original="likx/3ds/1.jpg" width="220" height="150">
+						</a>
+						</div>
+						<p>3ds max</p>
+					</div>
+		        </li>
+		        <li class="group">
+					<div class="box">
+						<div class="shot">
+						<a href="3ds.html" target="screen" data-toggle="screen">
+							<img class="lazy" data-original="likx/3ds/1.jpg" width="220" height="150">
+						</a>
+						</div>
+						<p>3ds max</p>
+					</div>
+		        </li>
+			</ul>
+		</div>
 	</section>
 	
 	<section id="screen-container">
@@ -64,21 +81,6 @@
 $(function(){
 	// 延迟加载
 	$("img.lazy").lazyload();
-
-	// 瀑布流
-	var handler = $('#work-list li');
-
-	handler.wookmark({
-		// Prepare layout options.
-		autoResize: true, // This will auto-update the layout when the browser window is resized.
-		container: $('#work-container'), // Optional, used for some extra CSS styling
-		offset: 5, // Optional, the distance between grid items
-		outerOffset: 10, // Optional, the distance to the containers border
-		itemWidth: 210, // Optional, the width of a grid item
-		onRefresh: function() {
-			console.log(1);
-		}
-	});
 
 	// 点击全屏
 	if (!screenfull.enabled) { // 暂时关闭全屏
