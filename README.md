@@ -11,5 +11,5 @@ http://act.nononono.cn
     ├── README.md           --- 使用帮助
     ├── js/                 --- 存放js文件
     ├── img/                --- 存放图片
-    ├── css/           	  --- 存放css文件
+    ├── css/           	    --- 存放css文件
     └── index.html          --- 应用首页
